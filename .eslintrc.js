@@ -1,8 +1,9 @@
 /* eslint-env-node */
 
-// yarn add -D eslint prettier typescript eslint-config-airbnb-typescript-prettier
+// yarn add -D eslint prettier typescript eslint-config-airbnb-typescript-prettier eslint-plugin-import eslint-import-resolver-typescript
 module.exports = {
   extends: ['eslint-config-airbnb-typescript-prettier', 'plugin:import/recommended', 'plugin:import/typescript', 'next'], // https://github.com/toshi-toma/eslint-config-airbnb-typescript-prettier https://github.com/airbnb/javascript
+  // Configure the import plugin to support TypeScript https://github.com/alexgorbatchev/eslint-import-resolver-typescript
   settings: {
     'import/resolver': {
       typescript: {
@@ -40,7 +41,7 @@ module.exports = {
     'no-else-return': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 'off',
-    'import/order': ['error', { 'newlines-between': 'always' }],
+    'import/order': ['error', { 'newlines-between': 'always' }], // Keep imports sorted alphabetically and add new lines between different groups of imports https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
   },
   reportUnusedDisableDirectives: true, // https://eslint.org/docs/user-guide/configuring#report-unused-eslint-disable-comments
 };
