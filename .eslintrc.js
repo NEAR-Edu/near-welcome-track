@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
     'react/jsx-props-no-spreading': 'warn',
     'prettier/prettier': 'warn',
     // REMEMBER TO RESTART `yarn dev` or `npm run watch` WHENEVER EDITING THESE RULES!
