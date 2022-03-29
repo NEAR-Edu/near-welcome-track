@@ -1,7 +1,7 @@
-import { NextPage } from 'next';
 import { Anchor, AnchorProps } from '@mantine/core';
+import React from 'react';
 
-const FooterLink: NextPage<AnchorProps<'a'>> = ({ children, className, ...props }) => {
+const FooterLink: React.FC<AnchorProps<'a'>> = ({ children, className, ...props }) => {
   return (
     <Anchor
       // eslint-disable-next-line react/jsx-props-no-spreading
