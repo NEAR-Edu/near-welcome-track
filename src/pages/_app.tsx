@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import '../styles/globals.css';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -17,11 +18,10 @@ export default function App(props: AppProps) {
 
       <MantineProvider
         withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: 'light',
-        }}
+        // theme={{
+        //   /** Put your mantine theme override here */
+        //   colorScheme: 'light',
+        // }}
       >
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
