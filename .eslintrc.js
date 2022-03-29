@@ -16,8 +16,8 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     // ------------------------------
     // Add rules that allow Prettier and ESLint to work together without conflicts (https://stackoverflow.com/a/64166241/):
-    indent: ['error', 2, { SwitchCase: 1 }],
-    'no-tabs': ['error', { allowIndentationTabs: true }],
+    indent: ['warn', 2, { SwitchCase: 1 }],
+    'no-tabs': ['warn', { allowIndentationTabs: true }],
     'max-len': [
       'warn',
       {
@@ -35,13 +35,13 @@ module.exports = {
     // ------------------------------
     'no-use-before-define': 'off', // We must disable the base rule (since it can report incorrect errors) and replace it (https://stackoverflow.com/a/64024916/)
     '@typescript-eslint/no-use-before-define': ['error'],
-    'max-lines-per-function': ['error', { max: 30, skipBlankLines: true, skipComments: true }], // https://eslint.org/docs/rules/max-lines-per-function
-    'max-lines': ['error', { max: 300, skipBlankLines: true, skipComments: true }], // https://eslint.org/docs/rules/max-lines
+    'max-lines-per-function': ['warn', { max: 30, skipBlankLines: true, skipComments: true }], // https://eslint.org/docs/rules/max-lines-per-function
+    'max-lines': ['warn', { max: 300, skipBlankLines: true, skipComments: true }], // https://eslint.org/docs/rules/max-lines
     'no-console': 'off', // Console logging is super helpful for development, and we can have our build process strip out all of those statements for production.
     'no-else-return': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 'off',
-    'import/order': ['error', { 'newlines-between': 'always' }], // Keep imports sorted alphabetically and add new lines between different groups of imports https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+    'import/order': ['warn', { 'newlines-between': 'always' }], // Keep imports sorted alphabetically and add new lines between different groups of imports https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
   },
   reportUnusedDisableDirectives: true, // https://eslint.org/docs/user-guide/configuring#report-unused-eslint-disable-comments
 };
