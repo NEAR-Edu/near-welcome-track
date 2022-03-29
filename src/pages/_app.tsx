@@ -18,10 +18,10 @@ export default function App(props: AppProps) {
 
       <MantineProvider
         withGlobalStyles
-        // theme={{
-        //   /** Put your mantine theme override here */
-        //   colorScheme: 'light',
-        // }}
+        theme={{
+          /** Put your mantine theme override here */
+          colorScheme: 'light',
+        }}
       >
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
