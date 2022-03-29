@@ -1,8 +1,8 @@
-import { AppProps } from "next/app";
-import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
-import { useState } from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { MantineProvider } from '@mantine/core';
+import { useState } from 'react';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -12,10 +12,7 @@ export default function App(props: AppProps) {
     <>
       <Head>
         <title>Page title</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
       <MantineProvider
@@ -23,11 +20,12 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: "light",
+          colorScheme: 'light',
         }}
       >
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <Component {...pageProps} />
           </Hydrate>
         </QueryClientProvider>
