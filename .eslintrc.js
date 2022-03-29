@@ -12,6 +12,8 @@ module.exports = {
     },
   },
   rules: {
+    'react/jsx-props-no-spreading': 'warn',
+    'prettier/prettier': 'warn',
     // REMEMBER TO RESTART `yarn dev` or `npm run watch` WHENEVER EDITING THESE RULES!
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     // ------------------------------
