@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ContentExperience {
+  ZERO
+  BASIC
+  INTERMEDIATE
+  EXPERT
+}
+
+enum ContentType {
+  TEXT
+  VIDEO
+  AUDIO
+  CODE
+  IMAGE
+}
+
+model Persona {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  content Content[]
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  content Content[]
+}
+
+model Content {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  author      String
+  source      String
+  language    String @default("en")
+  duration    Int
+
+  type       ContentType
+  experience ContentExperience
+  personas   Persona[]
+  tags       Tag[]
+}
