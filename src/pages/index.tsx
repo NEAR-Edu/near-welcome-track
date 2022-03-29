@@ -6,6 +6,7 @@ import Logo from '../svg/logo.svg';
 import Near from '../svg/near.svg';
 
 import FooterLink from 'src/components/FooterLink';
+import HeroSlide from 'src/components/HeroSlide';
 
 const Home: NextPage = () => {
   return (
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
           </Footer>
         }
       >
-        My application
+        <HeroSlide />
       </AppShell>
     </>
   );
