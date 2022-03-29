@@ -1,9 +1,11 @@
-import { Anchor, AppShell, Footer, Header } from '@mantine/core';
+import { AppShell, Footer, Header } from '@mantine/core';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import Logo from '../svg/logo.svg';
 import Near from '../svg/near.svg';
+
+import FooterLink from 'src/components/FooterLink';
 
 const Home: NextPage = () => {
   return (
@@ -23,13 +25,11 @@ const Home: NextPage = () => {
         }
         footer={
           <Footer height={60} p="md" className="flex items-center justify-between border-0">
-            <Anchor href="https://near.university" className="text-gray-400">
-              NEAR Education, 2022
-            </Anchor>
-            <Anchor href="https://near.org" className="text-gray-400 inline-flex items-center">
+            <FooterLink href="https://near.university">NEAR Education, 2022</FooterLink>
+            <FooterLink href="https://near.org" className="inline-flex items-center">
               <span className="mr-3">Powered by</span>
               <Near className="h-6" />
-            </Anchor>
+            </FooterLink>
           </Footer>
         }
       >
