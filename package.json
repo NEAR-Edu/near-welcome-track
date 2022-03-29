@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "run-db": "docker compose -f docker-compose.yml up -d",
+    "dev": "npm run run-db && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

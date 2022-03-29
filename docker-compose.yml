@@ -1,0 +1,15 @@
+# Set the version of docker compose to use
+version: '3.9'
+
+# The containers that compose the project
+services:
+  db:
+    image: postgres:14.2-alpine@sha256:b62797756ca37cebdf08aa391b9826b74410a26a252580bd9d8deabc08e602d1
+    restart: always
+    container_name: welcome-track-dev-db
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: welcome
+      POSTGRES_PASSWORD: track
+      POSTGRES_DB: welcome-track
