@@ -3,7 +3,6 @@
 // https://prettier.io/docs/en/options.html
 module.exports = {
   trailingComma: 'all',
-  endOfLine: 'auto', // https://stackoverflow.com/a/53769213/
   printWidth: 180,
   bracketSpacing: true,
   useTabs: false,
