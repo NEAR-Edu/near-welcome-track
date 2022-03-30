@@ -11,10 +11,9 @@ datasource db {
 }
 
 enum ContentExperience {
-  ZERO
-  BASIC
-  INTERMEDIATE
-  EXPERT
+  EASY
+  MEDIUM
+  HARD
 }
 
 enum ContentType {
@@ -39,6 +38,13 @@ model Tag {
   content Content[]
 }
 
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  content Content[]
+}
+
 model Content {
   id          Int    @id @default(autoincrement())
   title       String
@@ -53,4 +59,6 @@ model Content {
   experience ContentExperience
   personas   Persona[]
   tags       Tag[]
+  categoryId Int
+  category   Category          @relation(fields: [categoryId], references: [id])
 }
