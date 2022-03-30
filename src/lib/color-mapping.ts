@@ -1,4 +1,4 @@
-import { ContentExperience } from '@lib/db';
+import { ContentExperience } from '@prisma/client';
 
 export enum ThemeColor {
   red = 'bg-primary-red',

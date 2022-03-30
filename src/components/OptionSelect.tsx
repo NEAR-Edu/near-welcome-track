@@ -17,7 +17,7 @@ const OptionSelect: React.FC<Props> = ({ personas }) => (
     <MainHeader>You consider yourself as a</MainHeader>
 
     {personas.map(({ id, name }) => (
-      <CtaButton className="w-64 text-2xl" outline key={id} url={{ pathname: '/[persona]', query: { persona: name.toLowerCase() } }}>
+      <CtaButton className="w-64 text-2xl" outline key={id} url={{ pathname: '/results/[persona]', query: { persona: name } }}>
         {name}
       </CtaButton>
     ))}

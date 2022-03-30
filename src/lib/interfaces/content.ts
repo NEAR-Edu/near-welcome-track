@@ -8,7 +8,7 @@ const withPersona = Prisma.validator<Prisma.ContentArgs>()({ include: { personas
 
 export type ContentWithPersona = Prisma.ContentGetPayload<typeof withPersona>;
 
-const withPersonaAndTags = Prisma.validator<Prisma.ContentArgs>()({ include: { personas: true, tags: true } });
+export const withPersonaAndTags = Prisma.validator<Prisma.ContentArgs>()({ include: { personas: true, tags: true } });
 
 export type ContentWithPersonaAndTags = Prisma.ContentGetPayload<typeof withPersonaAndTags>;
 
