@@ -13,3 +13,8 @@ services:
       POSTGRES_USER: welcome
       POSTGRES_PASSWORD: track
       POSTGRES_DB: welcome-track
+    volumes:
+      - welcome-track-dev-db:/var/lib/postgresql/data
+
+volumes:
+  welcome-track-dev-db:
