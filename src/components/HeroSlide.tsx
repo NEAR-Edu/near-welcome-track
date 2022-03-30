@@ -13,10 +13,12 @@ const HeroSlide: React.FC = () => (
       Nisl vitae id enim sem nibh imperdiet netus velit sit. Viverra ut mauris at turpis mauris velit arcu.
     </p>
     <div className="flex space-x-12">
-      <CtaButton className="w-48" outline>
+      <CtaButton className="w-48" outline url="/surprise">
         Surprise me!
       </CtaButton>
-      <CtaButton className="w-48">Start here!</CtaButton>
+      <CtaButton className="w-48" url="/persona">
+        Start here!
+      </CtaButton>
     </div>
   </div>
 );

@@ -1,11 +1,17 @@
+import { UrlObject } from 'url';
+
+import Link from 'next/link';
 import React from 'react';
 
-const CtaButton: React.FC<{ outline?: boolean } & React.HTMLProps<HTMLButtonElement>> = ({ outline, className, children, ...props }) => (
-  <button
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
-    type="button"
-    className={`
+type Url = string | UrlObject;
+
+const CtaButton: React.FC<{ outline?: boolean; url: Url } & React.HTMLProps<HTMLAnchorElement>> = ({ outline, url, className, children, ...props }) => (
+  <Link href={url}>
+    <a
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+      type="button"
+      className={`
       ${className}
       px-8
       py-4
@@ -15,12 +21,17 @@ const CtaButton: React.FC<{ outline?: boolean } & React.HTMLProps<HTMLButtonElem
       font-bold
       rounded-full
       transition
-      duration-75
-      ${outline ? 'text-gray-800 hover:bg-slate-100' : 'text-white bg-gray-800 hover:bg-slate-700'}
+      duration-100
+      block
+      text-center
+      hover:bg-primary-black
+      active:bg-primary-black
+      ${outline ? 'text-primary-black hover:text-primary-white' : 'text-primary-white bg-primary-gray-6'}
     `}
-  >
-    {children}
-  </button>
+    >
+      {children}
+    </a>
+  </Link>
 );
 
 CtaButton.defaultProps = {
