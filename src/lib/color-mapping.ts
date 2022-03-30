@@ -12,22 +12,18 @@ export enum ThemeColor {
 }
 
 export function mapColor(color: string): ThemeColor {
-  const themeColor = ThemeColor[color as keyof typeof ThemeColor];
+  const themeColor: ThemeColor | undefined = ThemeColor[color as keyof typeof ThemeColor];
 
-  return themeColor || ThemeColor.gray;
+  return themeColor ?? ThemeColor.gray;
 }
 
-export function mapExperience(experience: ContentExperience): ThemeColor {
-  switch (experience) {
-    case ContentExperience.ZERO:
-    case ContentExperience.BASIC:
-      return ThemeColor.yellow;
-    case ContentExperience.INTERMEDIATE:
-      return ThemeColor.orange;
-    case ContentExperience.EXPERT:
-    default:
-      return ThemeColor.red;
-  }
-}
+export const experienceColorMap: Record<ContentExperience, ThemeColor> = {
+  [ContentExperience.ZERO]: ThemeColor.yellow,
+  [ContentExperience.BASIC]: ThemeColor.yellow,
+  [ContentExperience.INTERMEDIATE]: ThemeColor.orange,
+  [ContentExperience.EXPERT]: ThemeColor.red,
+};
+
+export const mapExperience = (experience: ContentExperience): ThemeColor => experienceColorMap[experience] ?? ThemeColor.red;
 
 export default mapColor;
