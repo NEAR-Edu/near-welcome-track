@@ -5,7 +5,7 @@ import Layout from '@components/Layout';
 import getContent from '@lib/queries/get-content';
 import SupriseSlide from '@components/SupriseSlide';
 
-const QuestionPage: NextPage = () => {
+const SuprisePage: NextPage = () => {
   return (
     <Layout title="NEAR Welcome Track">
       <SupriseSlide />
@@ -13,7 +13,7 @@ const QuestionPage: NextPage = () => {
   );
 };
 
-export default QuestionPage;
+export default SuprisePage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
