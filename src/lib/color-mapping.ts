@@ -18,10 +18,9 @@ export function mapColor(color: string): ThemeColor {
 }
 
 export const experienceColorMap: Record<ContentExperience, ThemeColor> = {
-  [ContentExperience.ZERO]: ThemeColor.yellow,
-  [ContentExperience.BASIC]: ThemeColor.yellow,
-  [ContentExperience.INTERMEDIATE]: ThemeColor.orange,
-  [ContentExperience.EXPERT]: ThemeColor.red,
+  [ContentExperience.EASY]: ThemeColor.yellow,
+  [ContentExperience.MEDIUM]: ThemeColor.orange,
+  [ContentExperience.HARD]: ThemeColor.red,
 };
 
 export const mapExperience = (experience: ContentExperience): ThemeColor => experienceColorMap[experience] ?? ThemeColor.red;
