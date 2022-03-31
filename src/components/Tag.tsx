@@ -1,4 +1,4 @@
-import { Center } from '@mantine/core';
+import { Center, CenterProps } from '@mantine/core';
 
 import { ThemeColor } from '@lib/color-mapping';
 
@@ -7,8 +7,9 @@ interface Props {
   color?: ThemeColor;
 }
 
-const Tag: React.FC<Props> = ({ text, color }) => (
-  <Center className={`${color} text-primary-white text-paragraph-1 rounded-full px-4 py-1`}>
+const Tag: React.FC<Props & Omit<CenterProps<'div'>, 'children'>> = ({ text, color, className, ...props }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Center className={`${className} ${color} text-primary-white text-paragraph-1 rounded-full px-4 py-1`} {...props}>
     <span>{text}</span>
   </Center>
 );

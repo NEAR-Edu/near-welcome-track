@@ -2,6 +2,7 @@ interface StorageSchema {
   content: {
     saved: 'true';
     completed: 'true';
+    hidden: 'true';
   };
 }
 

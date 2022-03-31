@@ -1,9 +1,9 @@
+import { Group } from '@mantine/core';
 import { GetServerSideProps, NextPage } from 'next';
 
-import prisma, { Persona, Content } from '@lib/db';
-import Layout from '@components/Layout';
-import OptionSelect from '@components/OptionSelect';
 import ContentRow from '@components/ContentRow';
+import Layout from '@components/Layout';
+import prisma, { Persona } from '@lib/db';
 import { ContentWithPersonaAndTags, withPersonaAndTags } from '@lib/interfaces/content';
 
 interface ResultsPageProps {
@@ -24,6 +24,28 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
 
   return (
     <Layout title={`NEAR Welcome Track: ${persona.name}`}>
+      <Group
+        className="
+          items-baseline
+          py-2
+          px-4
+          mb-5
+          border-b
+          border-b-gray-200
+        "
+      >
+        <h2
+          className="
+            text-3xl
+            font-bold
+          "
+        >
+          To do
+        </h2>
+        <div className="text-gray-500">
+          {content.length} items, {content.reduce((a, c) => c.duration + a, 0)} minutes
+        </div>
+      </Group>
       <div className="mx-12 space-y-3">
         {content.map((c) => (
           <div key={c.id}>
