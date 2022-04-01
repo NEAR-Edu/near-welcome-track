@@ -25,41 +25,43 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
 
   return (
     <Layout title={`NEAR Welcome Track: ${persona.name}`}>
-      {content.map((category) => (
-        <>
-          <Group
-            className="
-        items-baseline
-          py-2
-          px-4
-          mb-5
-          border-b
-          border-b-gray-200
-        "
-          >
-            <h2
+      {content
+        .filter((c) => c.content.length > 0)
+        .map((category) => (
+          <>
+            <Group
               className="
-            text-3xl
-            font-bold
-            capitalize
-          "
+                items-baseline
+                py-2
+                px-4
+                mb-5
+                border-b
+                border-b-gray-200
+              "
             >
-              {category.name}
-            </h2>
-            <div className="text-gray-500">
-              {category.content.length} items, {category.content.reduce((sum, piece) => piece.duration + sum, 0)} minutes
-            </div>
-          </Group>
-          <div className="mx-12 space-y-3">
-            {category.content.map((piece) => (
-              <div key={piece.id}>
-                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                <ContentRow {...piece} />
+              <h2
+                className="
+                  text-3xl
+                  font-bold
+                  capitalize
+                "
+              >
+                {category.name}
+              </h2>
+              <div className="text-gray-500">
+                {category.content.length} items, {category.content.reduce((sum, piece) => piece.duration + sum, 0)} minutes
               </div>
-            ))}
-          </div>
-        </>
-      ))}
+            </Group>
+            <div className="mx-12 space-y-3">
+              {category.content.map((piece) => (
+                <div key={piece.id}>
+                  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                  <ContentRow {...piece} />
+                </div>
+              ))}
+            </div>
+          </>
+        ))}
     </Layout>
   );
 };
