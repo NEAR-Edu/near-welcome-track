@@ -16,12 +16,11 @@ enum ContentExperience {
   HARD
 }
 
-enum ContentType {
-  TEXT
-  VIDEO
-  AUDIO
-  CODE
-  IMAGE
+model ContentType {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  content Content[]
 }
 
 model Persona {
@@ -55,10 +54,11 @@ model Content {
   language    String @default("en")
   duration    Int
 
-  type       ContentType
-  experience ContentExperience
-  personas   Persona[]
-  tags       Tag[]
-  categoryId Int
-  category   Category          @relation(fields: [categoryId], references: [id])
+  contentTypeId Int
+  type          ContentType       @relation(fields: [contentTypeId], references: [id])
+  categoryId    Int
+  category      Category          @relation(fields: [categoryId], references: [id])
+  experience    ContentExperience
+  personas      Persona[]
+  tags          Tag[]
 }
