@@ -3,17 +3,17 @@ import { dehydrate, QueryClient } from 'react-query';
 
 import Layout from '@components/Layout';
 import getContent from '@lib/queries/get-content';
-import SupriseSlide from '@components/SupriseSlide';
+import SurpriseSlide from '@components/SurpriseSlide';
 
-const SuprisePage: NextPage = () => {
+const SurprisePage: NextPage = () => {
   return (
     <Layout title="NEAR Welcome Track">
-      <SupriseSlide />
+      <SurpriseSlide />
     </Layout>
   );
 };
 
-export default SuprisePage;
+export default SurprisePage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();

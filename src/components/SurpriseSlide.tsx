@@ -8,7 +8,7 @@ import MainHeader from './MainHeader';
 
 import getContent from '@lib/queries/get-content';
 
-const SupriseSlide: React.FC = () => {
+const SurpriseSlide: React.FC = () => {
   const { data, refetch } = useQuery('random-content', getContent);
 
   return (
@@ -26,4 +26,4 @@ const SupriseSlide: React.FC = () => {
   );
 };
 
-export default SupriseSlide;
+export default SurpriseSlide;
