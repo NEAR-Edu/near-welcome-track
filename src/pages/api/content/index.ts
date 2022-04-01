@@ -1,7 +1,7 @@
 import { NextApiHandler } from 'next';
 
 import prisma from '@lib/db';
-import ContentWithTags from '@lib/interfaces/content';
+import { ContentWithTags } from '@lib/interfaces/content';
 
 const handler: NextApiHandler<ContentWithTags> = async (req, res): Promise<void> => {
   const content = await prisma.content.findFirst({ include: { tags: true } });

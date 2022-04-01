@@ -2,9 +2,9 @@ import ThumbsUp from '@svg/thumbs-up.svg';
 import ThumbsDown from '@svg/thumbs-down.svg';
 import AcceptCircle from '@svg/accept-circle.svg';
 import CancelCircle from '@svg/cancel-circle.svg';
-import ContentWithTags from '@lib/interfaces/content';
+import { ContentWithPersonaAndTagsAndType } from '@lib/interfaces/content';
 
-const ContentCardWide: React.FC<ContentWithTags> = ({ type, duration, title, description, tags }) => (
+const ContentCardWide: React.FC<ContentWithPersonaAndTagsAndType> = ({ type, duration, title, description, tags }) => (
   <div className="flex flex-col justify-start items-start h-[260px] overflow-hidden gap-[18px] px-4 py-[18px] rounded-[10px] bg-white border border-[#e1e1e1]">
     <div className="flex justify-between items-center flex-grow-0 flex-shrink-0 w-[557px]">
       <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[23px]">
@@ -12,7 +12,7 @@ const ContentCardWide: React.FC<ContentWithTags> = ({ type, duration, title, des
           <ThumbsUp />
           <ThumbsDown />
         </div>
-        <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{type}</p>
+        <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{type.name}</p>
         <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{duration}</p>
       </div>
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-5">

@@ -12,4 +12,12 @@ export const withPersonaAndTags = Prisma.validator<Prisma.ContentArgs>()({ inclu
 
 export type ContentWithPersonaAndTags = Prisma.ContentGetPayload<typeof withPersonaAndTags>;
 
+export const withPersonaAndTagsAndCategory = Prisma.validator<Prisma.ContentArgs>()({ include: { personas: true, tags: true, category: true } });
+
+export type ContentWithPersonaAndTagsAndCategory = Prisma.ContentGetPayload<typeof withPersonaAndTagsAndCategory>;
+
+export const withPersonaAndTagsAndType = Prisma.validator<Prisma.ContentArgs>()({ include: { personas: true, tags: true, type: true } });
+
+export type ContentWithPersonaAndTagsAndType = Prisma.ContentGetPayload<typeof withPersonaAndTagsAndType>;
+
 export default ContentWithTags;
