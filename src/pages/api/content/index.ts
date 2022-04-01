@@ -1,13 +1,13 @@
 import { NextApiHandler } from 'next';
 
 import prisma from '@lib/db';
-import { ContentWithTags } from '@lib/interfaces/content';
+import { ContentWithPersonaAndTagsAndType, withPersonaAndTagsAndType } from '@lib/interfaces/content';
 
-const handler: NextApiHandler<ContentWithTags> = async (req, res): Promise<void> => {
-  const content = await prisma.content.findFirst({ include: { tags: true } });
+const handler: NextApiHandler<ContentWithPersonaAndTagsAndType> = async (req, res): Promise<void> => {
+  const content = await prisma.content.findFirst(withPersonaAndTagsAndType);
 
   if (!content) {
-    res.status(404).send('' as unknown as ContentWithTags);
+    res.status(404).send('' as unknown as ContentWithPersonaAndTagsAndType);
     return;
   }
 

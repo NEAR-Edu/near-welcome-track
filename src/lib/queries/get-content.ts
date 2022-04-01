@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { ContentWithTags } from '@lib/interfaces/content';
+import { ContentWithPersonaAndTagsAndType } from '@lib/interfaces/content';
 
-async function getContent(): Promise<ContentWithTags> {
-  const response = await axios.get<ContentWithTags>('/api/content', {
+async function getContent(): Promise<ContentWithPersonaAndTagsAndType> {
+  const response = await axios.get<ContentWithPersonaAndTagsAndType>('/api/content', {
     baseURL: 'http://localhost:3000',
   });
 
