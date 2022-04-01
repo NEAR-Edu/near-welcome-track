@@ -12,22 +12,22 @@ const CtaButton: React.FC<{ outline?: boolean; url: Url } & React.HTMLProps<HTML
       {...props}
       type="button"
       className={`
-      ${className}
-      px-8
-      py-4
-      border
-      border-gray-800
-      text-xl
-      font-bold
-      rounded-full
-      transition
-      duration-100
-      block
-      text-center
-      hover:bg-primary-black
-      active:bg-primary-black
-      ${outline ? 'text-primary-black hover:text-primary-white' : 'text-primary-white bg-primary-gray-6'}
-    `}
+        ${className}
+        px-8
+        py-4
+        border
+        border-gray-800
+        text-xl
+        font-bold
+        rounded-full
+        transition
+        duration-100
+        block
+        text-center
+        hover:bg-primary-black
+        active:bg-primary-black
+        ${outline ? 'text-primary-black hover:text-primary-white' : 'text-primary-white bg-primary-gray-6'}
+      `}
     >
       {children}
     </a>
