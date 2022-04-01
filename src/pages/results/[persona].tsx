@@ -49,7 +49,7 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
                 {category.name}
               </h2>
               <div className="text-gray-500">
-                {category.content.length} items, {category.content.reduce((sum, piece) => piece.duration + sum, 0)} minutes
+                {category.content.length} item{category.content.length !== 1 ? 's' : ''}, {category.content.reduce((sum, piece) => piece.duration + sum, 0)} minutes
               </div>
             </Group>
             <div className="mx-12 space-y-3">
