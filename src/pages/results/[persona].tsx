@@ -4,11 +4,12 @@ import { GetServerSideProps, NextPage } from 'next';
 import ContentRow from '@components/ContentRow';
 import Layout from '@components/Layout';
 import prisma, { Persona } from '@lib/db';
-import { ContentWithPersonaAndTags, withPersonaAndTags } from '@lib/interfaces/content';
+import { withPersonaAndTags } from '@lib/interfaces/content';
+import { CategoryWithContent } from '@lib/interfaces/category';
 
 interface ResultsPageProps {
   persona: Persona | undefined;
-  content: ContentWithPersonaAndTags[];
+  content: CategoryWithContent[];
 }
 
 const empty: ResultsPageProps = {
@@ -24,36 +25,41 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
 
   return (
     <Layout title={`NEAR Welcome Track: ${persona.name}`}>
-      <Group
-        className="
-          items-baseline
+      {content.map((category) => (
+        <>
+          <Group
+            className="
+        items-baseline
           py-2
           px-4
           mb-5
           border-b
           border-b-gray-200
         "
-      >
-        <h2
-          className="
+          >
+            <h2
+              className="
             text-3xl
             font-bold
+            capitalize
           "
-        >
-          To do
-        </h2>
-        <div className="text-gray-500">
-          {content.length} items, {content.reduce((a, c) => c.duration + a, 0)} minutes
-        </div>
-      </Group>
-      <div className="mx-12 space-y-3">
-        {content.map((c) => (
-          <div key={c.id}>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <ContentRow {...c} />
+            >
+              {category.name}
+            </h2>
+            <div className="text-gray-500">
+              {category.content.length} items, {category.content.reduce((sum, piece) => piece.duration + sum, 0)} minutes
+            </div>
+          </Group>
+          <div className="mx-12 space-y-3">
+            {category.content.map((piece) => (
+              <div key={piece.id}>
+                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                <ContentRow {...piece} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      ))}
     </Layout>
   );
 };
@@ -77,12 +83,16 @@ export const getServerSideProps: GetServerSideProps<ResultsPageProps> = async ({
     return { props: empty };
   }
 
-  const content = await prisma.content.findMany({
-    ...withPersonaAndTags,
-    where: {
-      personas: {
-        some: {
-          id: persona.id,
+  const content = await prisma.category.findMany({
+    include: {
+      content: {
+        ...withPersonaAndTags,
+        where: {
+          personas: {
+            some: {
+              id: persona.id,
+            },
+          },
         },
       },
     },
