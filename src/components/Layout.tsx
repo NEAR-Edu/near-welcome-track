@@ -6,6 +6,7 @@ import FooterLink from './FooterLink';
 
 import Logo from '@svg/logo.svg';
 import Near from '@svg/near.svg';
+import Link from 'next/link';
 
 interface Props {
   title: string;
@@ -23,7 +24,12 @@ const Layout: React.FC<Props> = ({ children, title, description }) => (
       padding="md"
       header={
         <Header height={60} p="md" className="flex items-center border-0">
-          <Logo className="h-full" />
+          <Link href="/" passHref>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a className="h-full">
+              <Logo className="h-full" />
+            </a>
+          </Link>
         </Header>
       }
       footer={
