@@ -6,20 +6,25 @@ import Layout from '@components/Layout';
 import prisma, { Persona } from '@lib/db';
 import { withPersonaAndTags } from '@lib/interfaces/content';
 import { CategoryWithContent } from '@lib/interfaces/category';
+import { dehydrate, QueryClient, useQuery } from 'react-query';
+
+import forPersona from '@lib/queries/contentForPersona';
+import { useRouter } from 'next/router';
 
 interface ResultsPageProps {
   persona: Persona | undefined;
-  content: CategoryWithContent[];
 }
 
 const empty: ResultsPageProps = {
   persona: undefined,
-  content: [],
 };
 
-const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
-  console.log({ persona, content });
-  if (!persona) {
+const ResultsPage: NextPage<ResultsPageProps> = ({ persona }) => {
+  const { data: content } = useQuery('for-persona', () => (persona ? forPersona(persona.name) : []));
+
+  console.log({ content, persona });
+
+  if (!content || !persona) {
     return <div>Not found.</div>;
   }
 
@@ -68,42 +73,28 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
 
 export default ResultsPage;
 
-export const getServerSideProps: GetServerSideProps<ResultsPageProps> = async ({ query }) => {
-  const { persona: name } = query;
-
-  if (!name || name instanceof Array) {
-    return { props: empty };
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { persona: personaName } = query;
+  if (!personaName || personaName instanceof Array) {
+    return {
+      props: empty,
+    };
   }
 
-  const persona = await prisma.persona.findUnique({
+  const persona = prisma.persona.findUnique({
     where: {
-      name,
+      name: personaName,
     },
   });
 
-  if (!persona) {
-    return { props: empty };
-  }
+  const queryClient = new QueryClient();
 
-  const content = await prisma.category.findMany({
-    include: {
-      content: {
-        ...withPersonaAndTags,
-        where: {
-          personas: {
-            some: {
-              id: persona.id,
-            },
-          },
-        },
-      },
-    },
-  });
+  await queryClient.prefetchQuery('for-persona', () => (personaName ? forPersona(personaName) : []));
 
   return {
     props: {
-      persona,
-      content,
+      dehydratedState: dehydrate(queryClient),
+      persona: await persona,
     },
   };
 };

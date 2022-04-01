@@ -6,10 +6,10 @@ import CornerGradient from './CornerGradient';
 import CtaButton from './CtaButton';
 import MainHeader from './MainHeader';
 
-import getContent from '@lib/queries/get-content';
+import randomContent from '@lib/queries/randomContent';
 
 const SurpriseSlide: React.FC = () => {
-  const { data, refetch } = useQuery('random-content', getContent);
+  const { data, refetch } = useQuery('random-content', randomContent);
 
   return (
     <div className="flex justify-center items-center flex-col space-y-12 py-48 max-w-5xl mx-auto">
