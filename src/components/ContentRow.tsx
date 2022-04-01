@@ -35,7 +35,7 @@ const ContentRow: React.FC<ContentWithPersonaAndTags> = ({ id, title, link, pers
       <ReactionButton
         component={ThumbsUp}
         isActive={saved}
-        activeClass="text-purple-400 hover:text-purple-600"
+        activeClass="text-purple-600 hover:text-purple-400"
         onClick={() => {
           setSaved(storage.toggle('content', id.toString(), 'saved'));
         }}

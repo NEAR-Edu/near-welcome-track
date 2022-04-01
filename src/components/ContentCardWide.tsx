@@ -1,45 +1,70 @@
+import { useEffect, useState } from 'react';
+import { Anchor } from '@mantine/core';
+
+import ReactionButton from './ReactionButton';
+
 import ThumbsUp from '@svg/thumbs-up.svg';
-import ThumbsDown from '@svg/thumbs-down.svg';
+// import ThumbsDown from '@svg/thumbs-down.svg';
 import AcceptCircle from '@svg/accept-circle.svg';
 import CancelCircle from '@svg/cancel-circle.svg';
 import { ContentWithPersonaAndTagsAndType } from '@lib/interfaces/content';
+import * as storage from '@lib/storage';
 
-const ContentCardWide: React.FC<ContentWithPersonaAndTagsAndType> = ({ type, duration, title, description, tags }) => (
-  <div className="flex flex-col justify-start items-start h-[260px] overflow-hidden gap-[18px] px-4 py-[18px] rounded-[10px] bg-white border border-[#e1e1e1]">
-    <div className="flex justify-between items-center flex-grow-0 flex-shrink-0 w-[557px]">
-      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[23px]">
-        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-[15px]">
-          <ThumbsUp className="w-5 h-5" />
-          <ThumbsDown className="w-5 h-5" />
-        </div>
-        <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{type.name}</p>
-        <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{duration}</p>
+const ContentCardWide: React.FC<ContentWithPersonaAndTagsAndType> = ({ id, link, type, duration, title, description, tags }) => {
+  const [completed, setCompleted] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    setCompleted(storage.read('content', id.toString(), 'completed') === 'true');
+    setSaved(storage.read('content', id.toString(), 'saved') === 'true');
+  }, [id]);
+
+  return (
+    <div className="flex flex-col px-4 py-5 rounded-md bg-white border border-gray-200 gap-3 w-[560px]">
+      <div className="flex items-center gap-4">
+        <ReactionButton
+          label="Save"
+          component={ThumbsUp}
+          isActive={saved}
+          activeClass="text-purple-600 hover:text-purple-400"
+          onClick={() => {
+            setSaved(storage.toggle('content', id.toString(), 'saved', !saved));
+          }}
+        />
+        {/* <ThumbsDown className="w-5 h-5" /> */}
+
+        <p className="text-sm text-neutral-500 font-semibold">{type.name}</p>
+        <p className="text-sm text-neutral-500 font-semibold">{duration} minutes</p>
+
+        {/* spacer */}
+        <div className="flex-grow" />
+
+        <ReactionButton
+          label="Done"
+          component={AcceptCircle}
+          isActive={completed}
+          activeClass="text-green-600 hover:text-green-500"
+          onClick={() => {
+            setCompleted(storage.toggle('content', id.toString(), 'completed', !completed));
+          }}
+        />
+        <ReactionButton label="Hide" component={CancelCircle} isActive={false} activeClass="text-red-600 hover:text-red-500" />
       </div>
-      <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-5">
-        <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[5px]">
-          <AcceptCircle className="w-5 h-5" />
-          <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#a0a0a0]">Done</p>
-        </div>
-        <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[5px]">
-          <CancelCircle className="w-5 h-5" />
-          <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#a0a0a0]">Hide</p>
-        </div>
-      </div>
-    </div>
-    <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 h-[136px] relative gap-3">
-      <p className="flex-grow-0 flex-shrink-0 w-[557px] text-[22px] font-semibold text-left text-neutral-800">{title}</p>
-      <p className="flex-grow-0 flex-shrink-0 w-[557px] h-10 opacity-70 text-sm text-left text-neutral-800">{description}</p>
-    </div>
-    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[550px] gap-[254px]">
-      <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-[9px]">
-        {tags.map(({ id, name }) => (
-          <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-[15px] py-[5px] rounded-[50px] bg-[#f4f4f4]" key={id}>
-            <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#4e4e4e]">{name}</p>
+
+      <Anchor target="_blank" rel="noopener" href={link} className="font-semibold text-left text-neutral-800 text-2xl">
+        {title}
+      </Anchor>
+      <p className="text-neutral-600 mb-3">{description}</p>
+
+      <div className="flex gap-2">
+        {tags.map(({ id: tagId, name }) => (
+          <div className="text-sm rounded-full bg-gray-200 text-neutral-700 px-3 py-1" key={tagId}>
+            {name}
           </div>
         ))}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ContentCardWide;

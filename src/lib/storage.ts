@@ -25,8 +25,9 @@ export function toggle<N extends keyof StorageSchema, P extends keyof StorageSch
   namespace: N,
   id: string,
   property: V extends 'true' ? P : never,
+  force?: boolean,
 ): boolean {
-  const toggled = !read(namespace, id, property);
+  const toggled = force ?? !read(namespace, id, property);
   if (toggled) {
     store<N, P, V>(namespace, id, property, 'true' as V);
   } else {
