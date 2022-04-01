@@ -25,30 +25,20 @@ const ContentRow: React.FC<ContentWithPersonaAndTags> = ({ id, title, link, pers
   return (
     <Group>
       <ReactionButton
-        onClick={() => {
-          const toggled = !completed;
-          setCompleted(toggled);
-          if (toggled) {
-            storage.store('content', id.toString(), 'completed', 'true');
-          } else {
-            storage.remove('content', id.toString(), 'completed');
-          }
-        }}
-        className={completed ? 'text-green-600 hover:text-green-500' : ''}
         component={AcceptCircle}
+        isActive={completed}
+        activeClass="text-green-600 hover:text-green-500"
+        onClick={() => {
+          setCompleted(storage.toggle('content', id.toString(), 'completed'));
+        }}
       />
       <ReactionButton
-        onClick={() => {
-          const toggled = !saved;
-          setSaved(toggled);
-          if (toggled) {
-            storage.store('content', id.toString(), 'saved', 'true');
-          } else {
-            storage.remove('content', id.toString(), 'saved');
-          }
-        }}
-        className={saved ? 'text-purple-400 hover:text-purple-600' : ''}
         component={ThumbsUp}
+        isActive={saved}
+        activeClass="text-purple-400 hover:text-purple-600"
+        onClick={() => {
+          setSaved(storage.toggle('content', id.toString(), 'saved'));
+        }}
       />
       <CardLink href={link} text={title} completed={completed} />
       <Duration duration={duration} />

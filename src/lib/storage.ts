@@ -20,3 +20,17 @@ export function read<N extends keyof StorageSchema, P extends keyof StorageSchem
   const storageId = `${namespace}:${id}:${property}`;
   return localStorage.getItem(storageId) as V | null;
 }
+
+export function toggle<N extends keyof StorageSchema, P extends keyof StorageSchema[N], V extends StorageSchema[N][P] & string>(
+  namespace: N,
+  id: string,
+  property: V extends 'true' ? P : never,
+): boolean {
+  const toggled = !read(namespace, id, property);
+  if (toggled) {
+    store<N, P, V>(namespace, id, property, 'true' as V);
+  } else {
+    remove(namespace, id, property);
+  }
+  return toggled;
+}

@@ -9,19 +9,19 @@ const ContentCardWide: React.FC<ContentWithPersonaAndTagsAndType> = ({ type, dur
     <div className="flex justify-between items-center flex-grow-0 flex-shrink-0 w-[557px]">
       <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[23px]">
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-[15px]">
-          <ThumbsUp />
-          <ThumbsDown />
+          <ThumbsUp className="w-5 h-5" />
+          <ThumbsDown className="w-5 h-5" />
         </div>
         <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{type.name}</p>
         <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#616161]">{duration}</p>
       </div>
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-5">
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[5px]">
-          <AcceptCircle />
+          <AcceptCircle className="w-5 h-5" />
           <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#a0a0a0]">Done</p>
         </div>
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[5px]">
-          <CancelCircle />
+          <CancelCircle className="w-5 h-5" />
           <p className="flex-grow-0 flex-shrink-0 text-[13px] font-semibold text-left text-[#a0a0a0]">Hide</p>
         </div>
       </div>
