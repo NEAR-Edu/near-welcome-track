@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "run-db": "docker compose -f docker-compose.yml up -d",
     "dev": "npm run run-db && next dev",
     "build": "next build",
@@ -43,9 +44,15 @@
     "eslint-config-next": "^12.1.2",
     "eslint-import-resolver-typescript": "^2.7.0",
     "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "prettier": "^2.6.1",
     "prisma": "^3.11.1",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
