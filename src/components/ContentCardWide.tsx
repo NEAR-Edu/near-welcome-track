@@ -51,7 +51,7 @@ const ContentCardWide: React.FC<ContentWithPersonaAndTagsAndType> = ({ id, link,
         <ReactionButton label="Hide" component={CancelCircle} isActive={false} activeClass="text-red-600 hover:text-red-500" />
       </div>
 
-      <Anchor target="_blank" rel="noopener" href={link} className="font-semibold text-left text-neutral-800 text-2xl">
+      <Anchor href={link} className="font-semibold text-left text-neutral-800 text-2xl">
         {title}
       </Anchor>
       <p className="text-neutral-600 mb-3">{description}</p>
