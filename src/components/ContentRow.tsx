@@ -23,7 +23,14 @@ const ContentRow: React.FC<ContentWithPersonaAndTags> = ({ id, title, link, pers
   }, [id]);
 
   return (
-    <Group>
+    <Group
+      className={`
+        p-2
+        rounded-md
+        transition
+        ${saved ? 'bg-purple-100' : ''}
+      `}
+    >
       <ReactionButton
         component={AcceptCircle}
         isActive={completed}

@@ -1,5 +1,6 @@
 import { Group } from '@mantine/core';
 import { GetServerSideProps, NextPage } from 'next';
+import React from 'react';
 
 import ContentRow from '@components/ContentRow';
 import Layout from '@components/Layout';
@@ -28,7 +29,7 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
       {content
         .filter((c) => c.content.length > 0)
         .map((category) => (
-          <>
+          <React.Fragment key={category.id}>
             <Group
               className="
                 items-baseline
@@ -60,7 +61,7 @@ const ResultsPage: NextPage<ResultsPageProps> = ({ persona, content }) => {
                 </div>
               ))}
             </div>
-          </>
+          </React.Fragment>
         ))}
     </Layout>
   );
